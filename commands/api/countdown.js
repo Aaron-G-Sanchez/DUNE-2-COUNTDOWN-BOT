@@ -6,19 +6,32 @@ module.exports = {
     .setDescription('Calculates days left until Dune 2 releases'),
 
   async execute(interaction) {
-    let unix_timestamp = Date.now()
+    const endDate = new Date('Mar 1, 2024 00:00:00').getTime()
 
-    let date = new Date(unix_timestamp).toString()
+    let now = new Date().getTime()
 
-    // let hours = date.getHours(date)
-    // let minutes = date.getMinutes(date)
-    // let seconds = date.getSeconds(date)
+    let daysLeft = endDate - now
 
-    // let formattedTime = hours + ':' + minutes + ':' + seconds
+    let days = Math.floor(daysLeft / (1000 * 60 * 60 * 24))
+    let hours = Math.floor(
+      (daysLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    )
+    let minutes = Math.floor((daysLeft % (1000 * 60 * 60)) / (1000 * 60))
+    let seconds = Math.floor((daysLeft % (1000 * 60)) / 1000)
+
+    const countdown =
+      days +
+      'd' +
+      hours +
+      'h' +
+      minutes +
+      'm' +
+      seconds +
+      's' +
+      ' Days left until Dune 2'
 
     await interaction.reply({
-      content: `${date}`,
-      ephemeral: true
+      content: `${countdown}`
     })
   }
 }

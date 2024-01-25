@@ -28,7 +28,7 @@ module.exports = {
       'm' +
       seconds +
       's' +
-      ' Days left until Dune 2'
+      ' left until Dune 2'
 
     await interaction.reply({
       content: `${countdown}`
